@@ -6,6 +6,7 @@ import com.learning.entities.Anime;
 import com.learning.repository.AnimeRepository;
 import com.learning.service.AnimeService;
 import com.learning.util.LocalDateTimeUtil;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -41,7 +42,7 @@ public class AnimeController {
     }
 
     @PostMapping
-    public ResponseEntity<Anime> createAnime(@RequestBody AnimePostRequestBody anime) {
+    public ResponseEntity<Anime> createAnime(@RequestBody @Valid AnimePostRequestBody anime) {
         return new ResponseEntity<>(animeService.createAnime(anime), HttpStatus.CREATED);
     }
 
@@ -52,7 +53,7 @@ public class AnimeController {
     }
 
     @PutMapping
-    public ResponseEntity<Void> replaceAnime(@RequestBody AnimePutRequestBody animePutRequestBody) {
+    public ResponseEntity<Void> replaceAnime(@RequestBody @Valid AnimePutRequestBody animePutRequestBody) {
         animeService.replaceAnime(animePutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
