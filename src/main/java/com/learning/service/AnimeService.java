@@ -24,6 +24,10 @@ public class AnimeService {
         return animeRepository.findAll(pageable);
     }
 
+    public List<Anime> getAllAnimes() {
+        return animeRepository.findAll();
+    }
+
     public Anime getAnimeByIdOrThrowBadRequestException(long id) {
         return animeRepository.findById(id)
                 .orElseThrow(() -> new BadRequestException("Anime not found"));
@@ -50,4 +54,6 @@ public class AnimeService {
                 .build();
         animeRepository.save(anime);
     }
+
+
 }
